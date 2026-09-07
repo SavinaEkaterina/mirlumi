@@ -44,12 +44,18 @@ export const LumiAsset: React.FC<LumiAssetProps> = ({
     resolvedAsset = getAsset(type, color);
   }
 
+   const getAssetSrc = (path?: string) => {
+    if (!path) return '';
+    if (path.startsWith('data:') || path.startsWith('http')) return path;
+    return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+  };
+
   const [imgSrc, setImgSrc] = React.useState<string>(
-    resolvedAsset?.filePath || resolvedAsset?.src || ''
+    getAssetSrc(resolvedAsset?.filePath || resolvedAsset?.src)
   );
 
   React.useEffect(() => {
-    setImgSrc(resolvedAsset?.filePath || resolvedAsset?.src || '');
+    setImgSrc(getAssetSrc(resolvedAsset?.filePath || resolvedAsset?.src));
   }, [resolvedAsset]);
 
   if (!resolvedAsset) {
@@ -65,9 +71,9 @@ export const LumiAsset: React.FC<LumiAssetProps> = ({
   const defaultAlt = alt || `${resolvedAsset.name} (${resolvedAsset.color})`;
   const sizeClass = SIZE_CLASSES[size] || SIZE_CLASSES.medium;
 
-  const handleError = () => {
-    if (resolvedAsset && imgSrc !== resolvedAsset.src) {
-      setImgSrc(resolvedAsset.src);
+    const handleError = () => {
+    if (resolvedAsset && imgSrc !== getAssetSrc(resolvedAsset.src)) {
+      setImgSrc(getAssetSrc(resolvedAsset.src));
     }
   };
 
