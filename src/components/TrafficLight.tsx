@@ -42,7 +42,7 @@ export const TrafficLight: React.FC<TrafficLightProps> = ({
       <div className="relative inline-flex items-center justify-center select-none">
         {/* Main 3D WebP Asset Image */}
         <motion.img
-          src="/lumi/special/lumi_traffic_light.webp"
+          src={`${import.meta.env.BASE_URL}lumi/special/lumi_traffic_light.webp`}
           alt="Светофор 3D"
           className="w-auto h-56 xs:h-64 sm:h-80 md:h-96 max-w-full object-contain drop-shadow-xl pointer-events-none"
           animate={
