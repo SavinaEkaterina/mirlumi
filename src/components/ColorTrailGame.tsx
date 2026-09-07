@@ -67,11 +67,14 @@ const COLOR_CONFIGS: Record<TrailColor, ColorConfig> = {
 
 const ALL_COLORS: TrailColor[] = ['red', 'yellow', 'green', 'blue'];
 
+const withBaseUrl = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
 const FOOTPRINT_ASSETS: Record<TrailColor, string> = {
-  red: '/lumi/objects/footprint/lumi_footprint_red.png',
-  yellow: '/lumi/objects/footprint/lumi_footprint_yellow.png',
-  green: '/lumi/objects/footprint/lumi_footprint_green.png',
-  blue: '/lumi/objects/footprint/lumi_footprint_blue.png',
+  red: withBaseUrl('/lumi/objects/footprint/lumi_footprint_red.png'),
+  yellow: withBaseUrl('/lumi/objects/footprint/lumi_footprint_yellow.png'),
+  green: withBaseUrl('/lumi/objects/footprint/lumi_footprint_green.png'),
+  blue: withBaseUrl('/lumi/objects/footprint/lumi_footprint_blue.png'),
 };
 
 // Audio synth generator for color tones
