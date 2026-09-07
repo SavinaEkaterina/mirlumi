@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id='c'></canvas>
+<script>
+const img = new Image();
+img.src = '/lumi/special/lumi_traffic_light.webp';
+img.onload = () => {
+  const c = document.getElementById('c');
+  c.width = img.width;
+  c.height = img.height;
+  const ctx = c.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  const data = ctx.getImageData(0, 0, img.width, img.height).data;
+  
+  // Let's scan along the vertical centerline X = img.width/2 ~ 768
+  const x = Math.floor(img.width / 2);
+  let redPixelY = [];
+  let yellowPixelY = [];
+  let greenPixelY = [];
+  
+  for (let y = 0; y < img.height; y++) {
+    const idx = (y * img.width + x) * 4;
+    const r = data[idx];
+    const g = data[idx+1];
+    const b = data[idx+2];
+    const a = data[idx+3];
+    if (a > 100) {
+      // Check color dominance
+      if (r > 150 && g < 100 && b < 100) redPixelY.push(y);
+      if (r > 150 && g > 130 && b < 100) yellowPixelY.push(y);
+      if (g > 120 && r < 120) greenPixelY.push(y);
+    }
+  }
+  
+  console.log('Image dimensions:', img.width, img.height);
+  if (redPixelY.length) console.log('Red lamp Y range:', Math.min(...redPixelY), Math.max(...redPixelY), 'Center Y%:', ((Math.min(...redPixelY)+Math.max(...redPixelY))/2 / img.height * 100).toFixed(1));
+  if (yellowPixelY.length) console.log('Yellow lamp Y range:', Math.min(...yellowPixelY), Math.max(...yellowPixelY), 'Center Y%:', ((Math.min(...yellowPixelY)+Math.max(...yellowPixelY))/2 / img.height * 100).toFixed(1));
+  if (greenPixelY.length) console.log('Green lamp Y range:', Math.min(...greenPixelY), Math.max(...greenPixelY), 'Center Y%:', ((Math.min(...greenPixelY)+Math.max(...greenPixelY))/2 / img.height * 100).toFixed(1));
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id='canvas'></canvas>
+<script>
+const img = new Image();
+img.src = '/lumi/special/lumi_traffic_light.webp';
+img.onload = () => {
+  const canvas = document.getElementById('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  const data = ctx.getImageData(0, 0, img.width, img.height).data;
+  
+  // Find bounding box of traffic light
+  let minX = img.width, maxX = 0, minY = img.height, maxY = 0;
+  for (let y = 0; y < img.height; y++) {
+    for (let x = 0; x < img.width; x++) {
+      if (data[(y * img.width + x) * 4 + 3] > 20) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  
+  console.log('Img:', img.width, 'x', img.height);
+  console.log('Bounds X:', minX, maxX, 'Y:', minY, maxY);
+  console.log('Top %:', (minY / img.height * 100).toFixed(1));
+  console.log('Bottom %:', (maxY / img.height * 100).toFixed(1));
+  console.log('Left %:', (minX / img.width * 100).toFixed(1));
+  console.log('Right %:', (maxX / img.width * 100).toFixed(1));
+};
+</script>
+</body>
+</html>

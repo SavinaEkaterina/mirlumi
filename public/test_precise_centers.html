@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id='c'></canvas>
+<script>
+const img = new Image();
+img.src = '/lumi/special/lumi_traffic_light.webp';
+img.onload = () => {
+  const c = document.getElementById('c');
+  c.width = img.width;
+  c.height = img.height;
+  const ctx = c.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  const data = ctx.getImageData(0, 0, img.width, img.height).data;
+  
+  // Find top red, mid yellow, bot green glass circles
+  let redPixels = [], yellowPixels = [], greenPixels = [];
+  
+  for (let y = 0; y < img.height; y++) {
+    for (let x = 0; x < img.width; x++) {
+      const idx = (y * img.width + x) * 4;
+      const r = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
+      if (a > 100) {
+        // Red glass: high R, low G, low B
+        if (r > 160 && g < 70 && b < 70) redPixels.push({x, y});
+        // Yellow glass: high R, high G, low B
+        if (r > 180 && g > 130 && b < 70) yellowPixels.push({x, y});
+        // Green glass: high G, low R
+        if (g > 120 && r < 80) greenPixels.push({x, y});
+      }
+    }
+  }
+  
+  function stats(arr) {
+    if (!arr.length) return 'none';
+    const xs = arr.map(p=>p.x), ys = arr.map(p=>p.y);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const cX = (minX + maxX)/2, cY = (minY + maxY)/2;
+    return {
+      cX_pct: (cX / img.width * 100).toFixed(2),
+      cY_pct: (cY / img.height * 100).toFixed(2),
+      width_px: maxX - minX,
+      height_px: maxY - minY,
+      width_pct: ((maxX - minX) / img.width * 100).toFixed(2),
+      height_pct: ((maxY - minY) / img.height * 100).toFixed(2),
+    };
+  }
+  
+  console.log('RED:', JSON.stringify(stats(redPixels)));
+  console.log('YELLOW:', JSON.stringify(stats(yellowPixels)));
+  console.log('GREEN:', JSON.stringify(stats(greenPixels)));
+};
+</script>
+</body>
+</html>

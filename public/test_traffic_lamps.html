@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<script src='https://cdn.tailwindcss.com'></script>
+<style>
+  body { background-color: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; gap: 30px; }
+  .traffic-box { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+  .traffic-img { height: 320px; width: auto; object-fit: contain; }
+  
+  /* Lamp Overlay Container */
+  .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+  .lamp { position: absolute; width: 14%; aspect-ratio: 1; rounded-full: 9999px; border-radius: 50%; left: 43%; }
+  
+  .lamp-red { top: 22%; }
+  .lamp-yellow { top: 41%; }
+  .lamp-green { top: 60%; }
+  
+  .glow-red { background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(239,68,68,1) 40%, rgba(239,68,68,0.8) 70%, rgba(239,68,68,0) 100%); box-shadow: 0 0 25px #ef4444, 0 0 50px #ef4444; }
+  .glow-yellow { background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(245,158,11,1) 40%, rgba(245,158,11,0.8) 70%, rgba(245,158,11,0) 100%); box-shadow: 0 0 25px #f59e0b, 0 0 50px #f59e0b; }
+  .glow-green { background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(16,185,129,1) 40%, rgba(16,185,129,0.8) 70%, rgba(16,185,129,0) 100%); box-shadow: 0 0 25px #10b981, 0 0 50px #10b981; }
+</style>
+</head>
+<body>
+<div class='flex gap-12 flex-wrap justify-center'>
+  <div class='flex flex-col items-center gap-2'>
+    <h3 class='text-red-400 font-bold'>КРАСНЫЙ (Red Active)</h3>
+    <div class='traffic-box'>
+      <img src='/lumi/special/lumi_traffic_light.webp' class='traffic-img' />
+      <div class='overlay'>
+        <div class='lamp lamp-red glow-red'></div>
+      </div>
+    </div>
+  </div>
+
+  <div class='flex flex-col items-center gap-2'>
+    <h3 class='text-amber-400 font-bold'>ЖЁЛТЫЙ (Yellow Active)</h3>
+    <div class='traffic-box'>
+      <img src='/lumi/special/lumi_traffic_light.webp' class='traffic-img' />
+      <div class='overlay'>
+        <div class='lamp lamp-yellow glow-yellow'></div>
+      </div>
+    </div>
+  </div>
+
+  <div class='flex flex-col items-center gap-2'>
+    <h3 class='text-emerald-400 font-bold'>ЗЕЛЁНЫЙ (Green Active)</h3>
+    <div class='traffic-box'>
+      <img src='/lumi/special/lumi_traffic_light.webp' class='traffic-img' />
+      <div class='overlay'>
+        <div class='lamp lamp-green glow-green'></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

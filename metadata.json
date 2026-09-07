@@ -1,0 +1,6 @@
+{
+  "name": "Сломанный светофор",
+  "description": "Нейропсихологический игровой прототип для дошкольников на развитие внимания, торможения и когнитивного переключения",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
