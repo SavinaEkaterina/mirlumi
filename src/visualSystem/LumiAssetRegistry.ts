@@ -24,22 +24,23 @@ export const LUMI_STATES: LumiState[] = [
   'attention',
   'speaking',
 ];
-
+const withBaseUrl = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 export const LUMI_ASSETS: Record<LumiState, string> = {
-  neutral: '/lumi/character/lumi_neutral.webp',
-  happy: '/lumi/character/lumi_happy.webp',
-  support: '/lumi/character/lumi_support.webp',
-  thinking: '/lumi/character/lumi_thinking.webp',
-  surprised: '/lumi/character/lumi_surprised.webp',
-  retry: '/lumi/character/lumi_retry.webp',
-  clap: '/lumi/character/lumi_clap.webp',
-  victory: '/lumi/character/lumi_victory.webp',
-  rest: '/lumi/character/lumi_rest.webp',
-  attention: '/lumi/character/lumi_attention.webp',
-  speaking: '/lumi/character/lumi_speaking.webp',
+  neutral: withBaseUrl('/lumi/character/lumi_neutral.webp'),
+happy: withBaseUrl('/lumi/character/lumi_happy.webp'),
+support: withBaseUrl('/lumi/character/lumi_support.webp'),
+thinking: withBaseUrl('/lumi/character/lumi_thinking.webp'),
+surprised: withBaseUrl('/lumi/character/lumi_surprised.webp'),
+retry: withBaseUrl('/lumi/character/lumi_retry.webp'),
+clap: withBaseUrl('/lumi/character/lumi_clap.webp'),
+victory: withBaseUrl('/lumi/character/lumi_victory.webp'),
+rest: withBaseUrl('/lumi/character/lumi_rest.webp'),
+attention: withBaseUrl('/lumi/character/lumi_attention.webp'),
+speaking: withBaseUrl('/lumi/character/lumi_speaking.webp'),
 };
 
-export const LUMI_DANCE_VIDEO = '/lumi/character/dance.mp4';
+export const LUMI_DANCE_VIDEO = withBaseUrl('/lumi/character/dance.mp4');
 
 const STATE_ALIASES: Record<string, LumiState> = {
   normal: 'neutral',
