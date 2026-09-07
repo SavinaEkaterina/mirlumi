@@ -52,81 +52,82 @@ export const LumiWorldScreen: React.FC<LumiWorldScreenProps> = ({
     stopLumiVoice();
     onSelectGame(game);
   };
-
+const withBaseUrl = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
   const games: GameCardConfig[] = [
     {
       id: 'TRAFFIC_LIGHT',
-      icon: '/lumi/icon/icon_traffic_light.png',
+      icon: withBaseUrl('/lumi/icon/icon_traffic_light.png'),
       title: 'Сломанный светофор',
       description: 'Помоги машинкам проехать! Помни правила, когда светофор ломается.',
       tags: ['Торможение', 'Переключение'],
     },
     {
       id: 'COLOR_SEQUENCE',
-      icon: '/lumi/icon/icon_color_sequence.png',
+      icon: withBaseUrl('/lumi/icon/icon_color_sequence.png'),
       title: 'Луми потерял цвета',
       description: 'Запомни цвета и помоги Луми вернуть их в правильном порядке!',
       tags: ['Рабочая память', 'Последовательность'],
     },
     {
       id: 'COLOR_WORLD',
-      icon: '/lumi/icon/icon_color_world.png',
+     icon: withBaseUrl('/lumi/icon/icon_color_world.png'),
       title: 'Цветной мир',
       description: 'Собирай цвета, помогай Луми собрать урожай и построить свой цветной дом!',
       tags: ['«Я собираю»', '«Я помогаю»', '«Я создаю»'],
     },
     {
       id: 'COLOR_HIDDEN',
-      icon: '/lumi/icon/icon_color_hidden.png',
+      icon: withBaseUrl('/lumi/icon/icon_color_hidden.png'),
       title: 'Цвет спрятался',
       description: 'Найди все предметы заданного цвета! Развивай зрительное внимание вместе с Луми.',
       tags: ['Зрительное внимание', 'Выделение признака'],
     },
     {
       id: 'SPOT_DIFF',
-      icon: '/lumi/icon/icon_spot_diff.png',
+      icon: withBaseUrl('/lumi/icon/icon_spot_diff.png'),
       title: 'Что изменилось?',
       description: 'Запомни предметы на картинке и найди, что пропало или изменилось!',
       tags: ['Зрительная память', 'Сравнение'],
     },
     {
       id: 'COLOR_TRAIL',
-      icon: '/lumi/icon/icon_color_trail.png',
+      icon: withBaseUrl('/lumi/icon/icon_color_trail.png'),
       title: 'Цветной след',
       description: 'Запомни порядок цветных точек и повтори их след шаг за шагом!',
       tags: ['Рабочая память', 'Последовательность', 'Пространство'],
     },
     {
       id: 'ROBOT_MISTAKE',
-      icon: '/lumi/icon/icon_robot_mistake.png',
+      icon: withBaseUrl('/lumi/icon/icon_robot_mistake.png'),
       title: 'Робот ошибается',
       description: 'Слушай робота и сравнивай с картинкой! Не верь роботу на слово — проверь его ответ.',
       tags: ['Контроль ответа', 'Зрительное внимание', 'Сравнение'],
     },
     {
       id: 'COLOR_OR_SHAPE',
-      icon: '/lumi/icon/icon_color_code.png',
+      icon: withBaseUrl('/lumi/icon/icon_color_code.png'),
       title: 'Цвет или форма?',
       description: 'Ищи предметы по цвету или форме, а на 3-м уровне слушай сигнал!',
       tags: ['Переключение', 'Слуховой сигнал', 'Удержание правила'],
     },
     {
       id: 'COLOR_DANCE',
-      icon: '/lumi/icon/icon_color_dance.png',
+      icon: withBaseUrl('/lumi/icon/icon_color_dance.png'),
       title: 'Цветовой танец',
       description: 'Выполняй движения по цветам: хлопок, топот или приседание!',
       tags: ['Сенсомоторика', 'Рабочая память', 'Контроль'],
     },
     {
       id: 'ASSOCIATION_WORD',
-      icon: '/lumi/icon/icon_association.png',
+     icon: withBaseUrl('/lumi/icon/icon_association.png'),
       title: 'Ассоциация → слово',
       description: 'Учимся связывать предметы и цвета: от картинки к цвету и обратно!',
       tags: ['Речевое обозначение', 'Ассоциация', 'Признак'],
     },
     {
       id: 'COLOR_CODE',
-      icon: '/lumi/icon/icon_home.png',
+      icon: withBaseUrl('/lumi/icon/icon_home.png'),
       title: 'Луми ищет цвет',
       description: 'Помоги Луми найти потерянные цвета в её домике!',
       tags: ['Домик Луми', 'Зрительный поиск', 'Классификация'],
@@ -134,7 +135,7 @@ export const LumiWorldScreen: React.FC<LumiWorldScreenProps> = ({
     },
     {
       id: 'ODD_ONE_OUT',
-      icon: '/lumi/icon/icon_odd_one_out.png',
+      icon: withBaseUrl('/lumi/icon/icon_odd_one_out.png'),
       title: 'Что лишнее?',
       description: 'Найди предмет, который не относится к группе, и объясни почему!',
       tags: ['Классификация', 'Обобщение', 'Речь'],
